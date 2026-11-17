@@ -1,0 +1,567 @@
+{
+  "name": "lumen",
+  "version": "0.2.0",
+  "description": "Themed Claude Code replies: colored text, tables, code, diagrams and charts, figures, bubbles, tool rows and diff cards in 16 themes",
+  "author": {
+    "name": "haolun1996"
+  },
+  "homepage": "https://github.com/haolun1996/claude-tools",
+  "repository": "https://github.com/haolun1996/claude-tools",
+  "license": "MIT",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "enabled": {
+      "type": "boolean",
+      "title": "Enabled",
+      "description": "Draw replies with lumen. Off falls back to Claude Code's own renderer.",
+      "default": true
+    },
+    "surfaces": {
+      "type": "string",
+      "title": "Surfaces",
+      "description": "Where lumen draws: all, or a comma-separated list of terminal, desktop, vscode, mobile. The rest use Claude Code's own renderer.",
+      "default": "terminal"
+    },
+    "theme": {
+      "type": "string",
+      "title": "Theme",
+      "description": "The color theme. random picks a dark theme each time the mod loads.",
+      "default": "catppuccin-mocha",
+      "options": [
+        "catppuccin-mocha",
+        "dracula",
+        "nord",
+        "tokyo-night",
+        "gruvbox-dark",
+        "rose-pine",
+        "everforest",
+        "github-dark",
+        "one-dark",
+        "solarized-dark",
+        "neon",
+        "catppuccin-latte",
+        "gruvbox-light",
+        "rose-pine-dawn",
+        "github-light",
+        "solarized-light",
+        "mono",
+        "random"
+      ]
+    },
+    "codeStyle": {
+      "type": "string",
+      "title": "Code block style",
+      "description": "plain: no frame. framed: a rounded box. filled: a background. card: a rounded box on a background.",
+      "default": "plain",
+      "options": [
+        "plain",
+        "framed",
+        "filled",
+        "card"
+      ]
+    },
+    "tableStyle": {
+      "type": "string",
+      "title": "Table style",
+      "description": "box: every cell boxed. grid: framed, no lines between rows. rules: horizontal rules only. minimal: a rule under the header.",
+      "default": "box",
+      "options": [
+        "box",
+        "rules",
+        "grid",
+        "minimal"
+      ]
+    },
+    "tableLayout": {
+      "type": "string",
+      "title": "Table layout",
+      "description": "classic: columns share the width. auto: stack rows as cards when the longest words do not fit. compact: columns at their longest word. stacked: always cards.",
+      "default": "classic",
+      "options": [
+        "classic",
+        "auto",
+        "compact",
+        "stacked"
+      ]
+    },
+    "headingStyle": {
+      "type": "string",
+      "title": "Heading style",
+      "description": "banner: a box around H1, a heavy rule under H2. bold, underline (H1 and H2), uppercase (H1).",
+      "default": "banner",
+      "options": [
+        "banner",
+        "bold",
+        "underline",
+        "uppercase"
+      ]
+    },
+    "listMarker": {
+      "type": "string",
+      "title": "List marker",
+      "description": "dots: bullets nested as dots. dash: - at every level, pastes as a markdown list.",
+      "default": "dots",
+      "options": [
+        "dots",
+        "dash"
+      ]
+    },
+    "taskStyle": {
+      "type": "string",
+      "title": "Task list style",
+      "description": "checks: [ ] [✓]. ticks: ○ ✓. box: □ ✓. progress: ticks with a done-count bar.",
+      "default": "checks",
+      "options": [
+        "checks",
+        "ticks",
+        "box",
+        "progress"
+      ]
+    },
+    "highlightNumbers": {
+      "type": "boolean",
+      "title": "Highlight numbers",
+      "description": "Numbers, versions, durations, sizes and percentages in the number color.",
+      "default": true
+    },
+    "highlightPaths": {
+      "type": "boolean",
+      "title": "Highlight paths",
+      "description": "File paths in the path color.",
+      "default": true
+    },
+    "promptStyle": {
+      "type": "string",
+      "title": "Prompt style",
+      "description": "bubble: your prompt on the right in a filled bubble. framed: the same with no fill. wide: a full-width box. bar: an accent bar. chevron: a bold ❯. off: Claude Code's own.",
+      "default": "bubble",
+      "options": [
+        "bubble",
+        "framed",
+        "wide",
+        "bar",
+        "chevron",
+        "off"
+      ]
+    },
+    "replyStyle": {
+      "type": "string",
+      "title": "Reply style",
+      "description": "auto: bubble while prompts are bubbles, else off. bubble: a framed, filled bubble. solid: filled to the edge. framed: a frame, no fill. off: a dot before the first line.",
+      "default": "auto",
+      "options": [
+        "auto",
+        "bubble",
+        "solid",
+        "framed",
+        "off"
+      ]
+    },
+    "bubbleLabels": {
+      "type": "string",
+      "title": "Bubble labels",
+      "description": "small: You ● and ● Claude over the bubbles. large: a bigger ⬤ (some terminals draw it wider than one column). off: no labels.",
+      "default": "small",
+      "options": [
+        "small",
+        "large",
+        "off"
+      ]
+    },
+    "clock": {
+      "type": "string",
+      "title": "Clock",
+      "description": "Show when you sent each prompt and when each turn finished.",
+      "default": "off",
+      "options": [
+        "off",
+        "24h",
+        "12h"
+      ]
+    },
+    "toolRows": {
+      "type": "boolean",
+      "title": "Tool rows",
+      "description": "Draw each tool call as one row (Ran, Read, Edited) with a status dot, and edits as diff cards.",
+      "default": true
+    },
+    "toolStyle": {
+      "type": "string",
+      "title": "Tool row style",
+      "description": "chat: dimmed on the right. tree-dim: under the reply with ⎿, dimmed. tree-bold: tree-dim with one-line sentences in bold. classic: bold verb, full brightness.",
+      "default": "chat",
+      "options": [
+        "chat",
+        "tree-dim",
+        "tree-bold",
+        "classic"
+      ]
+    },
+    "toolOutput": {
+      "type": "string",
+      "title": "Tool output",
+      "description": "full: output as usual. quiet: nothing under reads and read-only commands. rows: nothing under any call that worked (edits keep their diff, failures their error).",
+      "default": "full",
+      "options": [
+        "full",
+        "quiet",
+        "rows"
+      ]
+    },
+    "diffStyle": {
+      "type": "string",
+      "title": "Diff style",
+      "description": "card: a rounded box with tinted lines. full: lines tinted across the width. marks: colored + and − only. bar: a colored ▌ before changed lines.",
+      "default": "card",
+      "options": [
+        "card",
+        "full",
+        "marks",
+        "bar"
+      ]
+    },
+    "commandOutput": {
+      "type": "boolean",
+      "title": "Slash command output",
+      "description": "Draw slash command output that holds markdown (tables, lists, code) like a reply.",
+      "default": true
+    },
+    "mermaid": {
+      "type": "boolean",
+      "title": "Mermaid diagrams",
+      "description": "Draw ```mermaid blocks as diagrams and charts. Off keeps them as code.",
+      "default": true
+    },
+    "mermaidAscii": {
+      "type": "boolean",
+      "title": "ASCII diagrams",
+      "description": "Draw diagram lines with + - | instead of box characters.",
+      "default": false
+    },
+    "pieStyle": {
+      "type": "string",
+      "title": "Pie style",
+      "description": "round: a circle with a legend. bars: one bar per slice.",
+      "default": "round",
+      "options": [
+        "round",
+        "bars"
+      ]
+    },
+    "statusMatrix": {
+      "type": "string",
+      "title": "Status tables",
+      "description": "color: status cells (✓ passed, ✗ failed, pending) in theme colors. summary: plus a count line. group: plus rows grouped by status.",
+      "default": "off",
+      "options": [
+        "off",
+        "color",
+        "summary",
+        "group"
+      ]
+    },
+    "testMatrix": {
+      "type": "string",
+      "title": "Test result tables",
+      "description": "report: a line under a table of test results with the share passed, other results and total time.",
+      "default": "off",
+      "options": [
+        "off",
+        "report"
+      ]
+    },
+    "benchTable": {
+      "type": "string",
+      "title": "Benchmark tables",
+      "description": "color: changes green for an improvement, red for a regression. trend: plus a sparkline of the runs.",
+      "default": "off",
+      "options": [
+        "off",
+        "color",
+        "trend"
+      ]
+    },
+    "schemaTable": {
+      "type": "string",
+      "title": "Schema tables",
+      "description": "types: type cells by family. keys: PK, FK, unique marked. full: both.",
+      "default": "off",
+      "options": [
+        "off",
+        "types",
+        "keys",
+        "full"
+      ]
+    },
+    "compareTable": {
+      "type": "string",
+      "title": "Comparison tables",
+      "description": "rank: rank cells as medals. pick: the top score marked. full: both.",
+      "default": "off",
+      "options": [
+        "off",
+        "rank",
+        "pick",
+        "full"
+      ]
+    },
+    "apiTable": {
+      "type": "string",
+      "title": "API tables",
+      "description": "verbs: method cells by HTTP verb. auth: auth schemes marked. full: both.",
+      "default": "off",
+      "options": [
+        "off",
+        "verbs",
+        "auth",
+        "full"
+      ]
+    },
+    "kvTable": {
+      "type": "string",
+      "title": "Config tables",
+      "description": "sources: source cells by origin. overrides: values off their default marked. full: both.",
+      "default": "off",
+      "options": [
+        "off",
+        "sources",
+        "overrides",
+        "full"
+      ]
+    },
+    "latex": {
+      "type": "boolean",
+      "title": "LaTeX math",
+      "description": "Typeset $$ and ```math formulas as images in kitty and Ghostty (needs ratex-render on PATH). Elsewhere they stay text.",
+      "default": false
+    },
+    "footnotes": {
+      "type": "boolean",
+      "title": "Footnotes",
+      "description": "Draw [^1] footnote marks as superscripts with the notes at the end of the reply.",
+      "default": true
+    },
+    "clickablePaths": {
+      "type": "boolean",
+      "title": "Clickable paths",
+      "description": "Make file paths and editor links in replies open on click (never programs or scripts).",
+      "default": true
+    },
+    "diagramHints": {
+      "type": "boolean",
+      "title": "Diagram hints",
+      "description": "Add a short model-only note to each prompt saying diagrams, charts and figures render here (about 600 tokens).",
+      "default": true
+    },
+    "accentColor": {
+      "type": "string",
+      "title": "Accent color",
+      "description": "Colors reply bullet, H3+ headings, quote bar. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "headingColor": {
+      "type": "string",
+      "title": "Heading color",
+      "description": "Colors H1 and H2. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "strongColor": {
+      "type": "string",
+      "title": "Strong color",
+      "description": "Colors bold text. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "emphasisColor": {
+      "type": "string",
+      "title": "Emphasis color",
+      "description": "Colors italic text, shell variables. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "inlineCodeColor": {
+      "type": "string",
+      "title": "Inline code color",
+      "description": "Colors inline code. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeTextColor": {
+      "type": "string",
+      "title": "Code text color",
+      "description": "Colors code block text. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeCommandColor": {
+      "type": "string",
+      "title": "Code command color",
+      "description": "Colors shell command words. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeFlagColor": {
+      "type": "string",
+      "title": "Code flag color",
+      "description": "Colors shell --flags and operators. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeStringColor": {
+      "type": "string",
+      "title": "Code string color",
+      "description": "Colors quoted strings in shell. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeCommentColor": {
+      "type": "string",
+      "title": "Code comment color",
+      "description": "Colors comments and prompt signs in code. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeFillColor": {
+      "type": "string",
+      "title": "Code fill color",
+      "description": "Colors the fill behind filled and card code blocks. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "codeBorderColor": {
+      "type": "string",
+      "title": "Code border color",
+      "description": "Colors the frame of framed and card code blocks. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "linkColor": {
+      "type": "string",
+      "title": "Link color",
+      "description": "Colors links and URLs. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "pathColor": {
+      "type": "string",
+      "title": "Path color",
+      "description": "Colors file paths. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "numberColor": {
+      "type": "string",
+      "title": "Number color",
+      "description": "Colors numbers, versions, durations, sizes, percentages. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "quoteColor": {
+      "type": "string",
+      "title": "Quote color",
+      "description": "Colors quote text. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "ruleColor": {
+      "type": "string",
+      "title": "Rule color",
+      "description": "Colors horizontal rules. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "tableHeaderColor": {
+      "type": "string",
+      "title": "Table header color",
+      "description": "Colors table header cells. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "tableRuleColor": {
+      "type": "string",
+      "title": "Table rule color",
+      "description": "Colors table lines. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "tableTextColor": {
+      "type": "string",
+      "title": "Table text color",
+      "description": "Colors table body text. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "bulletColor": {
+      "type": "string",
+      "title": "Bullet color",
+      "description": "Colors list bullets and numbers. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "diagramColor": {
+      "type": "string",
+      "title": "Diagram color",
+      "description": "Colors diagram lines (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "diagramTextColor": {
+      "type": "string",
+      "title": "Diagram text color",
+      "description": "Colors diagram labels (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "diffAddedColor": {
+      "type": "string",
+      "title": "Diff added color",
+      "description": "Colors added diff lines. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "diffRemovedColor": {
+      "type": "string",
+      "title": "Diff removed color",
+      "description": "Colors removed diff lines. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "promptFillColor": {
+      "type": "string",
+      "title": "Prompt fill color",
+      "description": "Colors prompt bubble fill (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "promptBorderColor": {
+      "type": "string",
+      "title": "Prompt border color",
+      "description": "Colors prompt bubble frame (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "promptTextColor": {
+      "type": "string",
+      "title": "Prompt text color",
+      "description": "Colors prompt bubble text (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "replyFillColor": {
+      "type": "string",
+      "title": "Reply fill color",
+      "description": "Colors reply bubble fill (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "replyBorderColor": {
+      "type": "string",
+      "title": "Reply border color",
+      "description": "Colors reply bubble frame (later phase). Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "alertNoteColor": {
+      "type": "string",
+      "title": "Alert note color",
+      "description": "Colors > [!NOTE] boxes. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "alertTipColor": {
+      "type": "string",
+      "title": "Alert tip color",
+      "description": "Colors > [!TIP] boxes. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "alertImportantColor": {
+      "type": "string",
+      "title": "Alert important color",
+      "description": "Colors > [!IMPORTANT] boxes. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "alertWarningColor": {
+      "type": "string",
+      "title": "Alert warning color",
+      "description": "Colors > [!WARNING] boxes. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    },
+    "alertCautionColor": {
+      "type": "string",
+      "title": "Alert caution color",
+      "description": "Colors > [!CAUTION] boxes. Hex (#a6e3a1), rgb(166,227,161), ansi256(114) or a name (green). Empty keeps the theme's.",
+      "default": ""
+    }
+  }
+}

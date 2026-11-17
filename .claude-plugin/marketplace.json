@@ -1,0 +1,19 @@
+{
+  "name": "claude-tools",
+  "owner": {
+    "name": "haolun1996"
+  },
+  "description": "lumen (themed Claude Code replies, diagrams and tool rows) and subagent-changes (a pane of every file each subagent changed)",
+  "plugins": [
+    {
+      "name": "lumen",
+      "source": "./plugins/lumen",
+      "description": "Themed replies: colored text, tables, code, mermaid diagrams and charts, figures, bubbles, tool rows and diff cards in 16 themes"
+    },
+    {
+      "name": "subagent-changes",
+      "source": "./plugins/subagent-changes",
+      "description": "A pane beside the chat listing each subagent and the files it added, modified, deleted or renamed"
+    }
+  ]
+}

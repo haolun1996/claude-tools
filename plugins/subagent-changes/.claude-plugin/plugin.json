@@ -1,0 +1,12 @@
+{
+  "name": "subagent-changes",
+  "version": "0.2.0",
+  "description": "A pane that tracks each subagent and the files it added, modified, deleted or renamed, with the changed lines",
+  "author": {
+    "name": "haolun1996"
+  },
+  "homepage": "https://github.com/haolun1996/claude-tools",
+  "repository": "https://github.com/haolun1996/claude-tools",
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
